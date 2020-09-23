@@ -4,17 +4,19 @@ const burgerMenu = () => {
     
     const topMenu = document.querySelector('.top-menu');
     const head = document.querySelector('.head');
-    
-    window.addEventListener('scroll', function() {
-        let r = topMenu.getBoundingClientRect();
-        let r2 = head.getBoundingClientRect();
-        if (r.top <= 0) {
-            topMenu.style.position = 'fixed'; 
-        }
-        if (r2.bottom > 0) {
-            topMenu.style.position = 'relative'; 
-        }
-    });
-};
 
+    if(window.matchMedia('(max-width: 768px)').matches) {
+        window.addEventListener('scroll', function(e) {
+            let cordTopMenu = topMenu.getBoundingClientRect();
+            let cordHead = head.getBoundingClientRect();
+            if (cordTopMenu.top <= 0) {
+                topMenu.style.position = 'fixed'; 
+            }
+            if (cordHead.bottom > 0) {
+                topMenu.style.position = 'relative'; 
+                topMenu.style.zIndex = "1";
+            }
+        });
+    }
+};
 export default burgerMenu;
