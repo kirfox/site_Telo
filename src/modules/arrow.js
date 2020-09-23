@@ -13,7 +13,9 @@ const arrow = () => {
         if (cordHeadSlider.bottom < 0) {
             totop.style.display = 'block';
         }
-        console.log(cordHeadSlider.bottom);
+        if (cordHeadSlider.bottom > 0) {
+            totop.style.display = 'none';
+        }
     });
 };
 

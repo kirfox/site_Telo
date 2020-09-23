@@ -13,7 +13,7 @@ const popUpWindow = () =>{
         if (target === target.closest('.open-popup')) {
             freeVisitForm.style.display = 'block';
         }
-        if (target === target.closest('#headerCallback')) {
+        if (target === target.closest('.callback-btn')) {
             callbackForm.style.display = 'block';
         }
         if (target === target.closest('.fixed-gift > img')) {
