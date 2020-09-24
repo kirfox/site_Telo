@@ -1,19 +1,22 @@
 'use strict';
 
 const dropdownMenu = () =>{
+   
+    const ul = document.querySelector('ul');
 
     document.addEventListener('click', (e) => {
         let target = e.target;
-
-        const clubsListUl = document.querySelector('.clubs-list > ul');
-        console.log(target);
-        if (target !== target.closest('.clubs-list > ul') && target !== target.closest('.clubs-list > ul > li')) {
-            clubsListUl.style.display = 'none';
+      
+        if (target.closest('.clubs-list > p')) {
+            ul.classList.toggle('show');
         }
-        if (target === target.closest('.clubs-list > p')) {
-            clubsListUl.style.display = 'block';
+        else if(target.closest('.clubs-list > li') || target.closest('.clubs-list > ul')){
+            ul.classList.add('show');
+        }
+        else {
+            ul.classList.remove('show');
         }
     });
 };
 
-export default dropdownMenu;
+export default dropdownMenu;    

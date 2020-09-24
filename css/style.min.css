@@ -1010,6 +1010,10 @@ header .head .club-select .clubs-list p {
     cursor: pointer
 }
 
+.show {
+    display: block !important;
+}
+
 header .head .club-select .clubs-list ul {
     display: none;
     width: 180px;
