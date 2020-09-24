@@ -1385,15 +1385,18 @@ nav.popup-menu .close-menu-btn img {
 }
 
 .slider-dots {
-    position: absolute;
+    
+    position: relative;
     bottom: 50px;
     left: 50%;
     margin-left: -65px;
-    z-index: 1000
+    z-index: 1000;
+    top: -50px;
 }
 
 .slider-dots li {
     float: left;
+    color: transparent;
 }
 
 .slider-dots li button {
@@ -1406,7 +1409,7 @@ nav.popup-menu .close-menu-btn img {
     margin-right: 5px
 }
 
-.slider-dots li.slick-active button {
+.slider-dots li button.slick-active {
     background-color: #ffd11a
 }
 
