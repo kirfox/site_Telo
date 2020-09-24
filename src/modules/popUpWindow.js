@@ -20,12 +20,14 @@ const popUpWindow = () =>{
             gift.style.display = 'block';
             fixedGift.style.display = 'none';
         }
-        if (target === target.closest('.close_icon') || target === target.closest('.overlay') || target === target.closest('.close-btn')) {
+        if (target === target.closest('.close_icon') || target === target.closest('.overlay')) {
             freeVisitForm.style.display = 'none';
             callbackForm.style.display = 'none';
+        }
+        if (target === target.closest('#gift > .form-wrapper > .close-form > .close_icon') || target === target.closest('#gift > .overlay') 
+        || target === target.closest('#gift > .form-wrapper > .form-content  > .close-btn')) {
             gift.style.display = 'none';
         }
-        
     });
 };
 

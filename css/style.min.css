@@ -1393,7 +1393,7 @@ nav.popup-menu .close-menu-btn img {
 }
 
 .slider-dots li {
-    float: left
+    float: left;
 }
 
 .slider-dots li button {
@@ -1619,13 +1619,16 @@ nav.popup-menu .close-menu-btn img {
 
 #gallery .gallery-slider .slide {
     margin: 0 auto !important;
-    width: 100%
+    width: 100%;
+    display: none;
 }
-
+.active-slide{
+    display: block !important;
+}
 #gallery .gallery-slider .slider-arrow {
     position: absolute;
-    top: 50%;
-    margin-top: -18px;
+    /* top: 50%; */
+    margin-top: -220px;
     z-index: 100;
     cursor: pointer
 }
@@ -1641,17 +1644,17 @@ nav.popup-menu .close-menu-btn img {
 }
 
 #gallery .gallery-slider .slider-arrow.prev {
-    left: 0
+    left: 450px;
 }
 
 #gallery .gallery-slider .slider-arrow.next {
-    right: 0
+    right: 450px;
 }
 
 #gallery .gallery-slider .slider-dots {
     left: 50%;
     margin-left: -65px;
-    bottom: 5%
+    bottom: 5%;
 }
 
 #cards {
