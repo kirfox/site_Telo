@@ -1546,28 +1546,40 @@ nav.popup-menu .close-menu-btn img {
     display: flex;
     margin: 0 auto;
     padding-left: 15px;
-    padding-right: 15px
+    padding-right: 15px;
+    
+    overflow: hidden; 
 }
+/* .test {
+    display: flex ;
+    margin: 0 auto ;
+    
+   
+} */
 
-.services-slider .slide {
+.services-slider  .slide {
     text-align: center;
-    margin-right: 6px;
-    margin-left: 6px;
-    width: 210px
+    margin-right: 2px;
+    margin-left: 2px;
+    width: 210px;
+    /* flex: 0 0 20% !important; */
+    
+    
 }
 
-.services-slider .slide img {
+.services-slider  .slide img {
     margin: 0 auto 19px
+  
 }
 
-.services-slider .slide h6 {
+.services-slider  .slide h6 {
     color: #2e2e2e;
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 8px
 }
 
-.services-slider .slide p {
+.services-slider  .slide p {
     color: #616161;
     font-size: 14px;
     font-weight: 300;
@@ -1580,7 +1592,8 @@ nav.popup-menu .close-menu-btn img {
 
 .services-slider .slider-arrow {
     position: absolute;
-    top: 75px;
+    /* top: 75px; */
+    top: 1800px;
     margin-top: -18px;
     z-index: 100;
     cursor: pointer
@@ -1597,11 +1610,13 @@ nav.popup-menu .close-menu-btn img {
 }
 
 .services-slider .slider-arrow.prev {
-    left: 2px
+    /* left: 2px */
+    left: 300px;
 }
 
 .services-slider .slider-arrow.next {
-    right: 2px
+    /* right: 2px */
+    right: 280px;
 }
 
 #gallery {
@@ -2264,6 +2279,16 @@ p.personal-data input[type=checkbox]:checked+label:before {
     font-weight: 500;
     margin-top: 30px
 }
+@media only screen and (max-width:1500px) {
+  
+    #gallery .gallery-slider .slider-arrow.prev {
+        left: 350px;
+    }
+    
+    #gallery .gallery-slider .slider-arrow.next {
+        right: 350px;
+    }
+}
 
 @media only screen and (max-width:1199px) {
     .services-slider .slider-arrow.prev {
@@ -2272,6 +2297,14 @@ p.personal-data input[type=checkbox]:checked+label:before {
 
     .services-slider .slider-arrow.next {
         right: 20px
+    }
+
+    #gallery .gallery-slider .slider-arrow.prev {
+        left: 150px;
+    }
+    
+    #gallery .gallery-slider .slider-arrow.next {
+        right: 150px;
     }
 }
 
