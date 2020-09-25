@@ -3,34 +3,48 @@
 const carousel = () => {
     const slider = document.querySelector('.services-slider');
     const test = document.querySelector('.test');
-    const slide = document.querySelectorAll('.services-slider > .slide');
-    const prev = document.querySelector('.services-slider > .prev');
-    const next = document.querySelector('.services-slider > .next');
-  
+    
     let position = 0;
-    // let width = 211;
-    let widthSlide = Math.floor(100/ 4);
+    let widthSlide = Math.floor(100/ 9);
+    let arrowLeft;
+    let arrowRight;
+    let spanLeft;
+    let spanRight;
 
+    const createArrow = () => {
 
-    prev.addEventListener('click', ()=> {
+        arrowLeft = document.createElement("div");
+        spanLeft = document.createElement('span');
+        arrowRight = document.createElement("div");
+        spanRight = document.createElement('span');
+        arrowRight.classList.add('slider-arrow');
+        arrowRight.classList.add('next');
+        arrowLeft.classList.add('slider-arrow');
+        arrowLeft.classList.add('prev');
+        spanLeft.textContent = "<";
+        spanRight.textContent = ">";
+
+        slider.append(arrowLeft);
+        arrowLeft.append(spanLeft);
+        slider.append(arrowRight);
+        arrowRight.append(spanRight);
+    };
+
+    createArrow();
+
+    arrowLeft.addEventListener('click', ()=> {
         if (position > 0) {
-        --position;
-        console.log(position);
-        test.style.transform = `translateX(-${position*widthSlide}%)`;
+            --position;
+            test.style.transform = `translateX(-${position*widthSlide}%)`;
         }
         
     });
-    next.addEventListener('click', ()=> {
+    arrowRight.addEventListener('click', ()=> {
         if (position < 5) {
             ++position;
-            console.log(position);
             test.style.transform = `translateX(-${position*widthSlide}%)`; 
         }
-
-        
     });
-
-  
 };
 
 export default carousel;

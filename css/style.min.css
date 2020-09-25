@@ -1545,41 +1545,39 @@ nav.popup-menu .close-menu-btn img {
 .services-slider {
     display: flex;
     margin: 0 auto;
-    padding-left: 15px;
-    padding-right: 15px;
+  
     
     overflow: hidden; 
 }
-/* .test {
+.test {
     display: flex ;
-    margin: 0 auto ;
-    
-   
-} */
+    margin: 0 auto;
+}
 
-.services-slider  .slide {
+.services-slider .test .slide {
     text-align: center;
-    margin-right: 2px;
-    margin-left: 2px;
+    /* margin-right: 4px;
+    margin-left: 4px; */
     width: 210px;
-    /* flex: 0 0 20% !important; */
+   
+    flex: 0 0 11% !important;
     
     
 }
 
-.services-slider  .slide img {
+.services-slider .test .slide img {
     margin: 0 auto 19px
   
 }
 
-.services-slider  .slide h6 {
+.services-slider .test .slide h6 {
     color: #2e2e2e;
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 8px
 }
 
-.services-slider  .slide p {
+.services-slider .test .slide p {
     color: #616161;
     font-size: 14px;
     font-weight: 300;
@@ -1593,8 +1591,7 @@ nav.popup-menu .close-menu-btn img {
 .services-slider .slider-arrow {
     position: absolute;
     /* top: 75px; */
-    top: 1800px;
-    margin-top: -18px;
+    margin-top: 55px;
     z-index: 100;
     cursor: pointer
 }
