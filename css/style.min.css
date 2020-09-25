@@ -702,6 +702,7 @@ html#schelkovo .advantages .wrapper {
     html#schelkovo .head-slider {
         height: 340px
     }
+
 }
 
 @media only screen and (max-width:850px) {
@@ -2276,14 +2277,34 @@ p.personal-data input[type=checkbox]:checked+label:before {
     font-weight: 500;
     margin-top: 30px
 }
-@media only screen and (max-width:1500px) {
+@media only screen and (max-width:1700px) {
   
     #gallery .gallery-slider .slider-arrow.prev {
-        left: 350px;
+        left: 200px;
     }
     
     #gallery .gallery-slider .slider-arrow.next {
-        right: 350px;
+        right: 200px;
+    }
+    .services-slider .slider-arrow.prev {
+        left: 125px
+    }
+
+    .services-slider .slider-arrow.next {
+        right: 120px
+    }
+}
+@media only screen and (max-width:1500px) {
+  
+    #gallery .gallery-slider .slider-arrow.prev {
+        left: 100px;
+    }
+    
+    #gallery .gallery-slider .slider-arrow.next {
+        right: 100px;
+    }
+    #services .wrapper{
+        max-width: 900px;
     }
 }
 
@@ -2297,11 +2318,11 @@ p.personal-data input[type=checkbox]:checked+label:before {
     }
 
     #gallery .gallery-slider .slider-arrow.prev {
-        left: 150px;
+        left: 15px;
     }
     
     #gallery .gallery-slider .slider-arrow.next {
-        right: 150px;
+        right: 15px;
     }
 }
 
@@ -2321,7 +2342,9 @@ p.personal-data input[type=checkbox]:checked+label:before {
     .hidden-991 {
         display: none !important
     }
-
+    #services .wrapper{
+        max-width: 800px;
+    }
     header .head .head-main {
         -ms-flex-wrap: wrap;
         -o-flex-wrap: wrap;
@@ -2418,7 +2441,9 @@ p.personal-data input[type=checkbox]:checked+label:before {
     header .top-menu ul li a {
         padding-left: 15px
     }
-
+    #services .wrapper{
+        max-width: 500px;
+    }
     footer .footer-top {
         -ms-flex-wrap: wrap;
         -o-flex-wrap: wrap;
@@ -2560,7 +2585,9 @@ p.personal-data input[type=checkbox]:checked+label:before {
         -o-flex-wrap: wrap;
         flex-wrap: wrap
     }
-
+    #services .wrapper{
+        max-width: 250px;
+    }
     header .head-main .right .free-visit {
         width: 100%;
         -webkit-box-pack: center;

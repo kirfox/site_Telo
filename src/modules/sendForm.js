@@ -42,7 +42,7 @@ const sendForm = () => {
         });
     };
 
-    const sendData = (data = form, checkBox = check1, addNotification = personalData, inputs = input) => {
+    const sendData = (data = form, checkBox = check1, addNotification = personalData, inputs = input, formName = "Записаться на визит") => {
         if (checkBox.checked) { 
             notification.textContent = '';
             checkBox.checked = false;
@@ -51,7 +51,7 @@ const sendForm = () => {
             
             const formData = new FormData(data);
             let body = {};
-    
+            formData.append('form_name', `${formName}`);
             formData.forEach((val, key) => {
                 body[key] = val;
             });
@@ -75,7 +75,7 @@ const sendForm = () => {
         } 
         else { 
             notification.textContent = "Поставьте галочку на согласие обработки персональных данных";
-            notification.style = 'margin-top: 10px; color: white';
+            notification.style = 'margin-top: 10px; color: red';
             addNotification.append(notification);
         }
     };
@@ -93,12 +93,13 @@ const sendForm = () => {
 
     form2.addEventListener('submit', (event) => {
         event.preventDefault();
-        sendData(form2, check2, personalData2, input2);
+        sendData(form2, check2, personalData2, input2, "Обратный звонок");
         
     });
 
     footerForm.addEventListener('submit', (event) => {
         event.preventDefault();
+        notification.textContent = "";
         if (checkMozaika.checked === true || checkSchelkovo.checked === true) { 
             thanks.style.display = 'block';
             thanksText.textContent = 'Загрузка...'; 
@@ -138,9 +139,9 @@ const sendForm = () => {
             
             checkMozaika.checked = false;
             checkSchelkovo.checked = false;
-        } else{
+        } else {
             notification.textContent = "Выберите клуб";
-            notification.style = 'margin-top: 10px; color: white; font-size: 20px';
+            notification.style = 'margin-top: 10px; color: red; font-size: 20px';
             chooseClub.append(notification);
         }
     });
@@ -154,9 +155,36 @@ const sendForm = () => {
         // if(target === target.closest('.mess')){
         //     target.value = target.value.replace(/[^а-я0-9.,!-? ]/gi, '');
         // }
+        // if (target === target.closest('#phone') || target === target.closest('#callback_form1-phone') || 
+        // target === target.closest('#callback_footer_form-phone') || target === target.closest('#callback_form-phone') || target === target.closest('#callback_form2-phone')) {
+        //     target.value = target.value.replace(/[^\+\d]/g, '');
+        // }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        let target = event.target;
         if (target === target.closest('#phone') || target === target.closest('#callback_form1-phone') || 
         target === target.closest('#callback_footer_form-phone') || target === target.closest('#callback_form-phone') || target === target.closest('#callback_form2-phone')) {
-            target.value = target.value.replace(/[^\+\d]/g, '');
+            if( !(event.key == 'ArrowLeft' || event.key == 'ArrowRight' || event.key == 'Backspace' || event.key == 'Tab')) { event.preventDefault() }
+            var mask = '+7 (111) 111-11-11'; // Задаем маску
+            
+            if (/[0-9\+\ \-\(\)]/.test(event.key)) {
+                let currentString = target.value;
+                let currentLength = currentString.length;
+                if (/[0-9]/.test(event.key)) {
+                    if (mask[currentLength] == '1') {
+                        target.value = currentString + event.key;
+                    } else {
+                        for (let i=currentLength; i<mask.length; i++) {
+                        if (mask[i] == '1') {
+                            target.value = currentString + event.key;
+                            break;
+                        }
+                        currentString += mask[i];
+                        }
+                    }
+                }
+            } 
         }
     });
 
