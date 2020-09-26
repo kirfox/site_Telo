@@ -35,7 +35,7 @@ const sendForm = () => {
     const popUpThanks = () => {
         thanks.addEventListener('click', (e) => {
             let target = e.target;
-            console.log(target);
+            
             if (target.closest('.overlay') || target.closest('.close_icon') || target.closest('.close-btn')) {
                 thanks.style.display = 'none';
             }
@@ -166,7 +166,7 @@ const sendForm = () => {
         if (target === target.closest('#phone') || target === target.closest('#callback_form1-phone') || 
         target === target.closest('#callback_footer_form-phone') || target === target.closest('#callback_form-phone') || target === target.closest('#callback_form2-phone')) {
             if( !(event.key == 'ArrowLeft' || event.key == 'ArrowRight' || event.key == 'Backspace' || event.key == 'Tab')) { event.preventDefault() }
-            var mask = '+7 (111) 111-11-11'; // Задаем маску
+            var mask = '+7 (111) 111-11-11'; 
             
             if (/[0-9\+\ \-\(\)]/.test(event.key)) {
                 let currentString = target.value;

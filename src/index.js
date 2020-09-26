@@ -7,7 +7,9 @@ import arrow from './modules/arrow';
 import headerSlider from './modules/headerSlider';
 import carousel from './modules/carousel';
 import gallerySlider from './modules/gallerySlider';
+import calculator from './modules/calculator';
 import sendForm from './modules/sendForm';
+
 
 
 dropdownMenu();
@@ -17,4 +19,5 @@ arrow();
 headerSlider();
 carousel();
 gallerySlider();
+calculator();
 sendForm();

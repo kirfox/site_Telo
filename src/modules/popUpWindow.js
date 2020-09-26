@@ -6,6 +6,7 @@ const popUpWindow = () =>{
     const callbackForm = document.getElementById('callback_form');
     const gift = document.getElementById('gift');
     const fixedGift = document.querySelector('.fixed-gift');
+    const inputs = document.querySelectorAll('input');
 
     document.addEventListener('click', (e) => {
 
@@ -23,6 +24,9 @@ const popUpWindow = () =>{
         if (target === target.closest('.close_icon') || target === target.closest('.overlay')) {
             freeVisitForm.style.display = 'none';
             callbackForm.style.display = 'none';
+            inputs.forEach((item) =>{
+                item.value = '';
+            });
         }
         if (target === target.closest('#gift > .form-wrapper > .close-form > .close_icon') || target === target.closest('#gift > .overlay') 
         || target === target.closest('#gift > .form-wrapper > .form-content  > .close-btn')) {
