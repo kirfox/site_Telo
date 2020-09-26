@@ -6,22 +6,29 @@ const sendForm = () => {
     const form1 = document.getElementById('form1');
     const form2 = document.getElementById('form2');
     const footerForm = document.getElementById('footer_form');
+    const cardOrder = document.getElementById('card_order');
 
     const input = form.querySelectorAll('input');
     const input1 = form1.querySelectorAll('input');
     const input2 = form2.querySelectorAll('input');
     const foterInput = footerForm.querySelectorAll('input');
+    const cardOrderInput = cardOrder.querySelectorAll('input');
     
     const check = document.getElementById('check');
     const check1 = document.getElementById('check1');
     const check2 = document.getElementById('check2');
     const checkMozaika = document.getElementById('footer_leto_mozaika');
     const checkSchelkovo = document.getElementById('footer_leto_schelkovo');
+    const checkCardMozaika = document.getElementById('card_leto_mozaika');
+    const checkCardSchelkovo = document.getElementById('card_leto_schelkovo');
+    
+    const cardCheck = document.getElementById('card_check');
     
     const personalData = form.querySelector('.personal-data');
     const personalData1 = form1.querySelector('.personal-data');
     const personalData2 = form2.querySelector('.personal-data');
     const chooseClub = footerForm.querySelector('.choose-club');
+    const cardOrderPersonalData = cardOrder.querySelector('.personal-data');
 
     const thanks = document.getElementById('thanks');
     const thanksText = document.querySelector('#thanks > .form-wrapper > .form-content > p');
@@ -29,6 +36,7 @@ const sendForm = () => {
     check.removeAttribute('required');
     check1.removeAttribute('required');
     check2.removeAttribute('required');
+    cardCheck.removeAttribute('required');
     
     const notification = document.createElement('div');
 
@@ -143,6 +151,91 @@ const sendForm = () => {
             notification.textContent = "Выберите клуб";
             notification.style = 'margin-top: 10px; color: red; font-size: 20px';
             chooseClub.append(notification);
+        }
+    });
+
+    // cardOrder.addEventListener('submit', (event) => {
+    //     event.preventDefault();
+    //     sendData(cardOrder, cardCheck, cardOrderPersonalData, cardOrderInput, "Забронировать карту");
+        
+    // });
+
+    cardOrder.addEventListener('submit', (event) => {
+        event.preventDefault();
+        
+        notification.textContent = "";
+        if (cardCheck.checked === true ) { 
+            thanks.style.display = 'block';
+            thanksText.textContent = 'Загрузка...'; 
+            
+            const formData = new FormData(cardOrder);
+            try {
+                if (checkCardMozaika.checked === true) {
+                    formData.append('club-name', 'Мозаика');
+                    formData.append('club-adress', 'Россия, Москва, 7-я Кожуховская ул.9');
+                }
+                if (checkCardSchelkovo.checked === true) {
+                    formData.append('club-name', '«Щелково»');
+                    formData.append('club-adress', 'Россия, г. Щелково, ул. Советская, д.16');
+                }
+            } catch (error) {
+                
+            }
+
+            function check(){
+                let inp = document.getElementsByName('card-type');
+                for (var i = 0; i < inp.length; i++) {
+                    if (inp[i].type == "radio" && inp[i].checked) {
+    
+                        if (inp[i].id === "t1" || inp[i].id === "m1") {
+                            formData.append('card-type', '1 месяц соло');
+                        }
+                        if (inp[i].id === "t2" || inp[i].id === "m2") {
+                            formData.append('card-type', '6 месяцев соло');
+                        }
+                        if (inp[i].id === "t3" || inp[i].id === "m3") {
+                            formData.append('card-type', '9 месяцев соло');
+                        }
+                        if (inp[i].id === "t5" || inp[i].id === "m4") {
+                            formData.append('card-type', '12 месяцев соло');
+                        }
+                        if (inp[i].id === "t4") {
+                            formData.append('card-type', '12 месяцев дневная');
+                        }
+                    }
+                }
+            }
+            check();
+
+            formData.append('form_name', 'Забронировать карту')
+
+            let body = {};
+
+            formData.forEach((val, key) => {
+                body[key] = val;
+            });
+            postData(body)
+            .then((response) =>{
+                if (response.status !== 200) {
+                    throw new Error('status network not 200');
+                }
+                popUpThanks();
+                thanksText.textContent = 'Спасибо! Мы скоро с вами свяжемся!'; 
+                })
+            .catch(((error) => {    
+                    thanksText.textContent = 'Что то пошло не так...! Попробуйте позже';
+                    popUpThanks();
+                })
+            );
+
+            cardOrderInput.forEach((item) =>{
+                item.value = '';
+            });
+            
+        } else {
+            notification.textContent = "Поставьте галочку на согласие обработки персональных данных";
+            notification.style = 'margin-top: 10px; color: red';
+            cardOrderPersonalData.append(notification);
         }
     });
 
