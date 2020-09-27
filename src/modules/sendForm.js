@@ -13,6 +13,9 @@ const sendForm = () => {
     const input2 = form2.querySelectorAll('input');
     const foterInput = footerForm.querySelectorAll('input');
     const cardOrderInput = cardOrder.querySelectorAll('input');
+    const callbackForm1Phone = document.getElementById('callback_form1-phone');
+    const callbackForm2Phone = document.getElementById('callback_form2-phone');
+    const phone = document.getElementById('phone');
     
     const check = document.getElementById('check');
     const check1 = document.getElementById('check1');
@@ -52,8 +55,8 @@ const sendForm = () => {
         setTimeout(() => thanks.style.display= 'none', 3000);
     };
 
-    const sendData = (data = form, checkBox = check1, addNotification = personalData, inputs = input, formName = "Записаться на визит") => {
-        if (checkBox.checked) { 
+    const sendData = (data = form, checkBox = check1, addNotification = personalData, inputs = input, checkPhone = phone, formName = "Записаться на визит" ) => {
+        if (checkBox.checked && (checkPhone.value.length === 12 || checkPhone.value.length === 18)) { 
             notification.textContent = '';
             checkBox.checked = false;
             thanks.style.display = 'block';
@@ -84,7 +87,7 @@ const sendForm = () => {
             });
         } 
         else { 
-            notification.textContent = "Поставьте галочку на согласие обработки персональных данных";
+            notification.textContent = "Поставьте галочку на согласие обработки персональных данных или в телефоне не 11 цифр";
             notification.style = 'margin-top: 10px; color: red';
             addNotification.append(notification);
         }
@@ -97,20 +100,23 @@ const sendForm = () => {
 
     form1.addEventListener('submit', (event) => {
         event.preventDefault();
-        sendData(form1, check, personalData1, input1);
+        sendData(form1, check, personalData1, input1, callbackForm1Phone);
         
     });
 
     form2.addEventListener('submit', (event) => {
         event.preventDefault();
-        sendData(form2, check2, personalData2, input2, "Обратный звонок");
+        sendData(form2, check2, personalData2, input2, callbackForm2Phone, "Обратный звонок");
         
     });
 
     footerForm.addEventListener('submit', (event) => {
         event.preventDefault();
+        const callbackFooterFormPhone = document.getElementById('callback_footer_form-phone');
+        
         notification.textContent = "";
-        if (checkMozaika.checked === true || checkSchelkovo.checked === true) { 
+        if ((checkMozaika.checked === true || checkSchelkovo.checked === true) && 
+        callbackFooterFormPhone.value.length === 12 || callbackFooterFormPhone.value.length === 18) { 
             thanks.style.display = 'block';
             thanksText.textContent = 'Загрузка...'; 
             
@@ -150,7 +156,7 @@ const sendForm = () => {
             checkMozaika.checked = false;
             checkSchelkovo.checked = false;
         } else {
-            notification.textContent = "Выберите клуб";
+            notification.textContent = "Выберите клуб или введите 11 цифр в номер телефона";
             notification.style = 'margin-top: 10px; color: red; font-size: 20px';
             chooseClub.append(notification);
         }
@@ -164,9 +170,14 @@ const sendForm = () => {
 
     cardOrder.addEventListener('submit', (event) => {
         event.preventDefault();
+
+        const callbackFormPhone = document.getElementById('callback_form-phone');
+
         
         notification.textContent = "";
-        if (cardCheck.checked === true ) { 
+
+        if (cardCheck.checked === true && (callbackFormPhone.value.length === 12 || callbackFormPhone.value.length === 18)) { 
+          
             thanks.style.display = 'block';
             thanksText.textContent = 'Загрузка...'; 
             
@@ -234,8 +245,9 @@ const sendForm = () => {
                 item.value = '';
             });
             
-        } else {
-            notification.textContent = "Поставьте галочку на согласие обработки персональных данных";
+        }
+        else {
+            notification.textContent = "Поставьте галочку на согласие обработки персональных данных или в телефоне не 11 цифр";
             notification.style = 'margin-top: 10px; color: red';
             cardOrderPersonalData.append(notification);
         }
@@ -261,7 +273,7 @@ const sendForm = () => {
         if (target === target.closest('#phone') || target === target.closest('#callback_form1-phone') || 
         target === target.closest('#callback_footer_form-phone') || target === target.closest('#callback_form-phone') || target === target.closest('#callback_form2-phone')) {
             if( !(event.key == 'ArrowLeft' || event.key == 'ArrowRight' || event.key == 'Backspace' || event.key == 'Tab' || event.key == 'F5')) { event.preventDefault() }
-
+            
             let mask = '+1 (111) 111-11-11'; 
         
             if (/[0-9\+\ \-\(\)]/.test(event.key)) {
@@ -282,6 +294,7 @@ const sendForm = () => {
                     }
                 }
             } 
+           
         }
     });
 

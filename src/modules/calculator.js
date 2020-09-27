@@ -2,8 +2,6 @@
 
 const calculator = () => {
 
-    // const time = document.querySelector('.time');
-    
     const cardOrder = document.getElementById('card_order');
     const cardLetoMozaika = document.getElementById('card_leto_mozaika');
     const cardLetoSchelkovo = document.getElementById('card_leto_schelkovo');
@@ -12,50 +10,54 @@ const calculator = () => {
 
     try {
         priceTotal.textContent  = 1999;
-        let oldPrice;
+        let oldPrice =  priceTotal.textContent  = 1999;
+
+        const changeOldPrice = () => {
+            oldPrice = priceTotal.textContent;
+        };
+    
         cardOrder.addEventListener('click', (e) => {
-            let target = e.target;
-            
-            if (cardLetoMozaika.checked === true) {
-                if (target.closest('#m1') || target.closest('#card_leto_mozaika') ) {
-                    priceTotal.textContent  = 1999; 
-                    oldPrice = priceTotal.textContent;
-                }
-                if (target.closest('#m2') || target.closest('#card_leto_mozaika') ) {
-                    priceTotal.textContent  = 9900; 
-                    oldPrice = priceTotal.textContent;
-                }
-                if (target.closest('#m3') || target.closest('#card_leto_mozaika')) {
-                    priceTotal.textContent  = 13900; 
-                    oldPrice = priceTotal.textContent;  
-                }
-                if (target.closest('#m4') || target.closest('#card_leto_mozaika')) {
-                    priceTotal.textContent  = 19900;
-                    oldPrice = priceTotal.textContent;
+            let inp = document.getElementsByName('card-type');
+            for (var i = 0; i < inp.length; i++) {
+                if (inp[i].type == "radio" && inp[i].checked) {
+
+                    if (cardLetoMozaika.checked === true && inp[i].id === "m1") {
+                        priceTotal.textContent  = 1999; 
+                        changeOldPrice();
+                    }
+                    if (cardLetoMozaika.checked === true && inp[i].id === "m2") {
+                        priceTotal.textContent  = 9900; 
+                        changeOldPrice();
+                    }
+                    if (cardLetoMozaika.checked === true && inp[i].id === "m3") {
+                        priceTotal.textContent  = 13900; 
+                        changeOldPrice();
+                    }
+                    if (cardLetoMozaika.checked === true && inp[i].id === "m4") {
+                        priceTotal.textContent  = 19900; 
+                        changeOldPrice();
+                    }
+
+                    if (cardLetoSchelkovo.checked === true && inp[i].id === "m1") {
+                        priceTotal.textContent  = 2999; 
+                        changeOldPrice();
+                    }
+                    if (cardLetoSchelkovo.checked === true && inp[i].id === "m2") {
+                        priceTotal.textContent  = 14990; 
+                        changeOldPrice();
+                    }
+                    if (cardLetoSchelkovo.checked === true && inp[i].id === "m3") {
+                        priceTotal.textContent  = 21990; 
+                        changeOldPrice();
+                    }
+                    if (cardLetoSchelkovo.checked === true && inp[i].id === "m4") {
+                        priceTotal.textContent  = 24990; 
+                        changeOldPrice();
+                    }
                 }
             }
-    
-            if (cardLetoSchelkovo.checked === true) {
-           
-                if (target.closest('#m1') || target.closest('#card_leto_schelkovo')) {
-                    priceTotal.textContent  = 2999;
-                    oldPrice = priceTotal.textContent;
-                }
-                if (target.closest('#m2') || target.closest('#card_leto_schelkovo')) {
-                    priceTotal.textContent  = 14990;
-                    oldPrice = priceTotal.textContent;
-                }
-                if (target.closest('#m3') || target.closest('#card_leto_schelkovo'))  {
-                    priceTotal.textContent  = 21990;
-                    oldPrice = priceTotal.textContent;
-                }
-                if (target.closest('#m4') || target.closest('#card_leto_schelkovo'))  {
-                    priceTotal.textContent  = 24990;
-                    oldPrice = priceTotal.textContent;
-                }
-            }  
-    
         });
+
         promokod.value.toString().trim();
         promokod.addEventListener('input', () => {
             
@@ -71,9 +73,6 @@ const calculator = () => {
         });
 
     } catch (error) {
-    
     }
-    
 };
-
 export default calculator;
