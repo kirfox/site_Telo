@@ -39,7 +39,7 @@ const sendForm = () => {
     cardCheck.removeAttribute('required');
     
     const notification = document.createElement('div');
-
+    notification.classList.add('notification');
     const popUpThanks = () => {
         thanks.addEventListener('click', (e) => {
             let target = e.target;
@@ -47,7 +47,9 @@ const sendForm = () => {
             if (target.closest('.overlay') || target.closest('.close_icon') || target.closest('.close-btn')) {
                 thanks.style.display = 'none';
             }
+            
         });
+        setTimeout(() => thanks.style.display= 'none', 3000);
     };
 
     const sendData = (data = form, checkBox = check1, addNotification = personalData, inputs = input, formName = "Записаться на визит") => {
@@ -258,13 +260,15 @@ const sendForm = () => {
         let target = event.target;
         if (target === target.closest('#phone') || target === target.closest('#callback_form1-phone') || 
         target === target.closest('#callback_footer_form-phone') || target === target.closest('#callback_form-phone') || target === target.closest('#callback_form2-phone')) {
-            if( !(event.key == 'ArrowLeft' || event.key == 'ArrowRight' || event.key == 'Backspace' || event.key == 'Tab')) { event.preventDefault() }
-            var mask = '+7 (111) 111-11-11'; 
-            
+            if( !(event.key == 'ArrowLeft' || event.key == 'ArrowRight' || event.key == 'Backspace' || event.key == 'Tab' || event.key == 'F5')) { event.preventDefault() }
+
+            let mask = '+1 (111) 111-11-11'; 
+        
             if (/[0-9\+\ \-\(\)]/.test(event.key)) {
                 let currentString = target.value;
                 let currentLength = currentString.length;
                 if (/[0-9]/.test(event.key)) {
+
                     if (mask[currentLength] == '1') {
                         target.value = currentString + event.key;
                     } else {

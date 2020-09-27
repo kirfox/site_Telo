@@ -2303,8 +2303,24 @@ p.personal-data input[type=checkbox]:checked+label:before {
     #gallery .gallery-slider .slider-arrow.next {
         right: 100px;
     }
-    #services .wrapper{
-        max-width: 900px;
+    
+}
+
+@media only screen and (max-width:1400px) {
+  
+    #gallery .gallery-slider .slider-arrow.prev {
+        left: 100px;
+    }
+    
+    #gallery .gallery-slider .slider-arrow.next {
+        right: 100px;
+    }
+    .services-slider .slider-arrow.prev {
+        left: 10px
+    }
+
+    .services-slider .slider-arrow.next {
+        right: 10px
     }
 }
 
@@ -2323,6 +2339,9 @@ p.personal-data input[type=checkbox]:checked+label:before {
     
     #gallery .gallery-slider .slider-arrow.next {
         right: 15px;
+    }
+    #services .wrapper{
+        max-width: 900px;
     }
 }
 

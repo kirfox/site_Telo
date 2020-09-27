@@ -6,7 +6,6 @@ const burgerMenu = () => {
     const head = document.querySelector('.head');
     const popupMenu = document.querySelector('.popup-menu');
 
-
     window.addEventListener('scroll', function(e) {
     if(window.matchMedia('(max-width: 768px)').matches) {
        
@@ -31,7 +30,6 @@ const burgerMenu = () => {
         if (target.closest('.popup-menu > .close-menu-btn > img') || target.closest('.popup-menu > ul > li') ) {
             popupMenu.style.display = 'none';
         }
-        console.log(target);
     });
     
 };
