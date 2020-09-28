@@ -9,11 +9,19 @@ const calculator = () => {
     const promokod = document.getElementById('promokod');
 
     try {
-        priceTotal.textContent  = 1999;
+        let price;
+        let skidka;
         let oldPrice =  priceTotal.textContent  = 1999;
 
-        const changeOldPrice = () => {
-            oldPrice = priceTotal.textContent;
+        const isDiscount = () => {
+            skidka = Math.round(priceTotal.textContent - ((priceTotal.textContent / 100) * 30));
+            if (promokod.value === 'ТЕЛО2019') {
+                priceTotal.textContent = skidka;
+                
+            }
+            if (promokod.value !== 'ТЕЛО2019'){
+                oldPrice = price;
+            }
         };
     
         cardOrder.addEventListener('click', (e) => {
@@ -22,56 +30,40 @@ const calculator = () => {
                 if (inp[i].type == "radio" && inp[i].checked) {
 
                     if (cardLetoMozaika.checked === true && inp[i].id === "m1") {
-                        priceTotal.textContent  = 1999; 
-                        changeOldPrice();
+                        price = priceTotal.textContent = 1999; 
+                        isDiscount();
                     }
                     if (cardLetoMozaika.checked === true && inp[i].id === "m2") {
-                        priceTotal.textContent  = 9900; 
-                        changeOldPrice();
+                        price = priceTotal.textContent  = 9900; 
+                        isDiscount();
                     }
                     if (cardLetoMozaika.checked === true && inp[i].id === "m3") {
-                        priceTotal.textContent  = 13900; 
-                        changeOldPrice();
+                        price = priceTotal.textContent  = 13900; 
+                        isDiscount();
                     }
                     if (cardLetoMozaika.checked === true && inp[i].id === "m4") {
-                        priceTotal.textContent  = 19900; 
-                        changeOldPrice();
+                        price = priceTotal.textContent  = 19900; 
+                        isDiscount();
                     }
-
                     if (cardLetoSchelkovo.checked === true && inp[i].id === "m1") {
                         priceTotal.textContent  = 2999; 
-                        changeOldPrice();
+                        isDiscount();
                     }
                     if (cardLetoSchelkovo.checked === true && inp[i].id === "m2") {
                         priceTotal.textContent  = 14990; 
-                        changeOldPrice();
+                        isDiscount();
                     }
                     if (cardLetoSchelkovo.checked === true && inp[i].id === "m3") {
                         priceTotal.textContent  = 21990; 
-                        changeOldPrice();
+                        isDiscount();
                     }
                     if (cardLetoSchelkovo.checked === true && inp[i].id === "m4") {
                         priceTotal.textContent  = 24990; 
-                        changeOldPrice();
+                        isDiscount();
                     }
                 }
             }
-        });
-
-        promokod.value.toString().trim();
-        promokod.addEventListener('input', () => {
-            
-            if (promokod.value === 'ТЕЛО2019') {
-                let newPrice;
-                newPrice = Math.round(priceTotal.textContent - ((priceTotal.textContent / 100) * 30));    
-                priceTotal.textContent = newPrice;
-                
-            }
-            else{
-                priceTotal.textContent = oldPrice;
-            }
-        });
-
+        });     
     } catch (error) {
     }
 };

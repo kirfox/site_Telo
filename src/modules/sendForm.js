@@ -1,6 +1,9 @@
 'use strict';
 
 const sendForm = () => {
+    // const submit = document.querySelectorAll('button[type="submit"]');
+    const callbackForm = document.getElementById('callback_form');
+    const freeVisitForm = document.getElementById('free_visit_form');
 
     const form = document.getElementById('banner-form');
     const form1 = document.getElementById('form1');
@@ -43,6 +46,7 @@ const sendForm = () => {
     
     const notification = document.createElement('div');
     notification.classList.add('notification');
+
     const popUpThanks = () => {
         thanks.addEventListener('click', (e) => {
             let target = e.target;
@@ -54,7 +58,8 @@ const sendForm = () => {
         });
         setTimeout(() => thanks.style.display= 'none', 3000);
     };
-
+    
+  
     const sendData = (data = form, checkBox = check1, addNotification = personalData, inputs = input, checkPhone = phone, formName = "Записаться на визит" ) => {
         if (checkBox.checked && (checkPhone.value.length === 12 || checkPhone.value.length === 18)) { 
             notification.textContent = '';
@@ -87,36 +92,70 @@ const sendForm = () => {
             });
         } 
         else { 
-            notification.textContent = "Поставьте галочку на согласие обработки персональных данных или в телефоне не 11 цифр";
+            notification.textContent = "Поставьте галочку на согласие обработки персональных данных";
             notification.style = 'margin-top: 10px; color: red';
             addNotification.append(notification);
         }
     };
 
+    // const forms = (test = form, func = sendData()) => {
+        
+    //         event.preventDefault();
+    //         func;
+     
+    
+    // };
+
+    // submit.forEach((item) => {
+    //     console.log(item);
+    //     document.addEventListener('submit', (e) => {
+    //         let target = e.target;
+    //         if(form.contains(item)){
+    //             e.preventDefault();
+    //             sendData();
+            
+    //         }   
+    //         if(form1.contains(item)){
+    //             e.preventDefault();
+    //             sendData(form1, check, personalData1, input1, callbackForm1Phone);
+    //         } 
+
+    //         if(form2.contains(item)){
+    //             e.preventDefault();
+    //             sendData(form2, check2, personalData2, input2, callbackForm2Phone, "Обратный звонок");
+    //         } 
+
+    //     });
+       
+    // });
+  
+
     form.addEventListener('submit', (event) => {
         event.preventDefault();
         sendData();
+        
     });
 
     form1.addEventListener('submit', (event) => {
         event.preventDefault();
         sendData(form1, check, personalData1, input1, callbackForm1Phone);
-        
+        callbackForm.style.display = 'none';
     });
 
     form2.addEventListener('submit', (event) => {
         event.preventDefault();
         sendData(form2, check2, personalData2, input2, callbackForm2Phone, "Обратный звонок");
-        
+        freeVisitForm.style.display = 'none';
     });
 
     footerForm.addEventListener('submit', (event) => {
         event.preventDefault();
         const callbackFooterFormPhone = document.getElementById('callback_footer_form-phone');
         
-        notification.textContent = "";
+        
         if ((checkMozaika.checked === true || checkSchelkovo.checked === true) && 
         callbackFooterFormPhone.value.length === 12 || callbackFooterFormPhone.value.length === 18) { 
+            notification.textContent = "";
             thanks.style.display = 'block';
             thanksText.textContent = 'Загрузка...'; 
             
@@ -153,10 +192,9 @@ const sendForm = () => {
                 item.value = '';
             });
             
-            checkMozaika.checked = false;
-            checkSchelkovo.checked = false;
+           
         } else {
-            notification.textContent = "Выберите клуб или введите 11 цифр в номер телефона";
+            notification.textContent = "Выберите клуб";
             notification.style = 'margin-top: 10px; color: red; font-size: 20px';
             chooseClub.append(notification);
         }
@@ -172,12 +210,15 @@ const sendForm = () => {
         event.preventDefault();
 
         const callbackFormPhone = document.getElementById('callback_form-phone');
-
+        const promokod = document.getElementById('promokod');
+        const priceTotal = document.getElementById('price-total');
+      
         
-        notification.textContent = "";
+       
 
         if (cardCheck.checked === true && (callbackFormPhone.value.length === 12 || callbackFormPhone.value.length === 18)) { 
-          
+            notification.textContent = "";
+            cardCheck.checked = false;
             thanks.style.display = 'block';
             thanksText.textContent = 'Загрузка...'; 
             
@@ -220,7 +261,11 @@ const sendForm = () => {
             }
             check();
 
-            formData.append('form_name', 'Забронировать карту')
+            formData.append('form_name', 'Забронировать карту');
+
+            if (promokod.value === 'ТЕЛО2019') {
+                formData.append('price with promokod', `${priceTotal.textContent}`)
+            }
 
             let body = {};
 
@@ -247,9 +292,10 @@ const sendForm = () => {
             
         }
         else {
-            notification.textContent = "Поставьте галочку на согласие обработки персональных данных или в телефоне не 11 цифр";
+            notification.textContent = "Поставьте галочку на согласие обработки персональных данных";
             notification.style = 'margin-top: 10px; color: red';
             cardOrderPersonalData.append(notification);
+          
         }
     });
 
