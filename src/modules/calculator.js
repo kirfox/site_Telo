@@ -9,14 +9,15 @@ const calculator = () => {
     const promokod = document.getElementById('promokod');
 
     try {
+        priceTotal.textContent  = 1999;
         let price;
-        let skidka;
-        let oldPrice =  priceTotal.textContent  = 1999;
+        let sale;
+        let oldPrice =  priceTotal.textContent;
 
         const isDiscount = () => {
-            skidka = Math.round(priceTotal.textContent - ((priceTotal.textContent / 100) * 30));
+            sale = Math.round(priceTotal.textContent - ((priceTotal.textContent / 100) * 30));
             if (promokod.value === 'ТЕЛО2019') {
-                priceTotal.textContent = skidka;
+                priceTotal.textContent = sale;
                 
             }
             if (promokod.value !== 'ТЕЛО2019'){
@@ -46,24 +47,31 @@ const calculator = () => {
                         isDiscount();
                     }
                     if (cardLetoSchelkovo.checked === true && inp[i].id === "m1") {
-                        priceTotal.textContent  = 2999; 
+                        price = priceTotal.textContent  = 2999; 
                         isDiscount();
                     }
                     if (cardLetoSchelkovo.checked === true && inp[i].id === "m2") {
-                        priceTotal.textContent  = 14990; 
+                        price = priceTotal.textContent  = 14990; 
                         isDiscount();
                     }
                     if (cardLetoSchelkovo.checked === true && inp[i].id === "m3") {
-                        priceTotal.textContent  = 21990; 
+                        price = priceTotal.textContent  = 21990; 
                         isDiscount();
                     }
                     if (cardLetoSchelkovo.checked === true && inp[i].id === "m4") {
-                        priceTotal.textContent  = 24990; 
+                        price = priceTotal.textContent  = 24990; 
                         isDiscount();
                     }
                 }
             }
         });     
+
+        promokod.addEventListener('input', () => {
+            oldPrice = priceTotal.textContent;
+            priceTotal.textContent = promokod.value === 'ТЕЛО2019' ? sale : price;
+        });
+
+
     } catch (error) {
     }
 };

@@ -90,6 +90,8 @@ const sendForm = () => {
             inputs.forEach((item) =>{
                 item.value = '';
             });
+            callbackForm.style.display = 'none';
+            freeVisitForm.style.display = 'none';
         } 
         else { 
             notification.textContent = "Поставьте галочку на согласие обработки персональных данных";
@@ -138,14 +140,14 @@ const sendForm = () => {
 
     form1.addEventListener('submit', (event) => {
         event.preventDefault();
-        sendData(form1, check, personalData1, input1, callbackForm1Phone);
-        callbackForm.style.display = 'none';
+        sendData(form1, check, personalData1, input1, callbackForm1Phone, "Обратный звонок");
+        // callbackForm.style.display = 'none';
     });
 
     form2.addEventListener('submit', (event) => {
         event.preventDefault();
-        sendData(form2, check2, personalData2, input2, callbackForm2Phone, "Обратный звонок");
-        freeVisitForm.style.display = 'none';
+        sendData(form2, check2, personalData2, input2, callbackForm2Phone);
+        // freeVisitForm.style.display = 'none';
     });
 
     footerForm.addEventListener('submit', (event) => {
@@ -194,7 +196,7 @@ const sendForm = () => {
             
            
         } else {
-            notification.textContent = "Выберите клуб";
+            notification.textContent = "Введите корректный номер телефона";
             notification.style = 'margin-top: 10px; color: red; font-size: 20px';
             chooseClub.append(notification);
         }
@@ -213,9 +215,6 @@ const sendForm = () => {
         const promokod = document.getElementById('promokod');
         const priceTotal = document.getElementById('price-total');
       
-        
-       
-
         if (cardCheck.checked === true && (callbackFormPhone.value.length === 12 || callbackFormPhone.value.length === 18)) { 
             notification.textContent = "";
             cardCheck.checked = false;
@@ -262,10 +261,14 @@ const sendForm = () => {
             check();
 
             formData.append('form_name', 'Забронировать карту');
-
-            if (promokod.value === 'ТЕЛО2019') {
-                formData.append('price with promokod', `${priceTotal.textContent}`)
+            try {
+                if (promokod.value === 'ТЕЛО2019') {
+                    formData.append('price with promokod', `${priceTotal.textContent}`)
+                }
+            } catch (error) {
+                
             }
+            
 
             let body = {};
 
