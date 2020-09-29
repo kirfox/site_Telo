@@ -60,7 +60,14 @@ const sendForm = () => {
     };
     
   
-    const sendData = (data = form, checkBox = check1, addNotification = personalData, inputs = input, checkPhone = phone, formName = "Записаться на визит" ) => {
+    const sendData = (
+        data = form, 
+        checkBox = check1, 
+        addNotification = personalData, 
+        inputs = input, 
+        checkPhone = phone, 
+        formName = "Записаться на визит" 
+    ) => {
         if (checkBox.checked && (checkPhone.value.length === 12 || checkPhone.value.length === 18)) { 
             notification.textContent = '';
             checkBox.checked = false;
@@ -263,10 +270,53 @@ const sendForm = () => {
             formData.append('form_name', 'Забронировать карту');
             try {
                 if (promokod.value === 'ТЕЛО2019') {
-                    formData.append('price with promokod', `${priceTotal.textContent}`)
+                   
+                    let price;
+                    let sale = priceTotal.textContent;
+                    let inp = document.getElementsByName('card-type');
+                    for (var i = 0; i < inp.length; i++) {
+                        
+                        if (inp[i].type == "radio" && inp[i].checked) {
+                         
+                            if (checkCardMozaika.checked === true && inp[i].id === "m1") {
+                                price = priceTotal.textContent = 1999; 
+                                
+                            }
+                            if (checkCardMozaika.checked === true && inp[i].id === "m2") {
+                                price = priceTotal.textContent  = 9900; 
+                              
+                            }
+                            if (checkCardMozaika.checked === true && inp[i].id === "m3") {
+                                price = priceTotal.textContent  = 13900; 
+                            
+                            }
+                            if (checkCardMozaika.checked === true && inp[i].id === "m4") {
+                                price = priceTotal.textContent  = 19900; 
+                                
+                            }
+                            if (checkCardSchelkovo.checked === true && inp[i].id === "m1") {
+                                price = priceTotal.textContent  = 2999; 
+                                
+                            }
+                            if (checkCardSchelkovo.checked === true && inp[i].id === "m2") {
+                                price = priceTotal.textContent  = 14990; 
+                              
+                            }
+                            if (checkCardSchelkovo.checked === true && inp[i].id === "m3") {
+                                price = priceTotal.textContent  = 21990; 
+                               
+                            }
+                            if (checkCardSchelkovo.checked === true && inp[i].id === "m4") {
+                                price = priceTotal.textContent  = 24990; 
+                               
+                            }
+                        }
+                    }
+                    formData.append('price with promokod', `${sale}`);
+                
                 }
             } catch (error) {
-                
+                console.log(error);
             }
             
 
