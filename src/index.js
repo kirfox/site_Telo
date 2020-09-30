@@ -9,6 +9,7 @@ import carousel from './modules/carousel';
 import gallerySlider from './modules/gallerySlider';
 import calculator from './modules/calculator';
 import sendForm from './modules/sendForm';
+import smoothScrolling from './modules/smoothScrolling';
 
 
 
@@ -20,4 +21,5 @@ headerSlider();
 carousel();
 gallerySlider();
 calculator();
+smoothScrolling();
 sendForm();
